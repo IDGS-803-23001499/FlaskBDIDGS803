@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block container%} {% from "_macros.html" import camposNuevos %}
+{% extends "layout.html" %}{% block container %}{%from "_macros.html" import camposNuevos %}
+
+<a href="index" class="font-medium text-fg-brand hover:underline">Volver</a>
 <div>
     <h5>
         Nombre: {{nombre}}
@@ -10,4 +12,5 @@
         Correo: {{email}}
     </h3>
 </div>
-{%endblock%}
+
+{% endblock %}
