@@ -28,15 +28,16 @@
             </tr>
         </thead>
         <tbody>
+            {%for alum in alumno%}
             <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                    Apple MacBook Pro 17"
+                    {{ alum.nombre }}
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    {{ alum.apaterno }}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    {{ alum.email }}
                 </td>
                 <td class="px-6 py-4">
                     <a href="#" class="font-medium text-fg-brand hover:underline" style="color: orangered;">Editar</a>
