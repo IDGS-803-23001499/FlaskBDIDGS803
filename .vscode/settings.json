@@ -1,6 +1,7 @@
 {
-  "python.defaultInterpreterPath": "C:\\Users\\José Hernández\\FlaskBDIDGS803\\.env\\Scripts\\python.exe",
+  "python.defaultInterpreterPath": "C:/ProjectsCardiel/FlaskBDIDGS803/.env/Scripts/python.exe",
   "python.analysis.extraPaths": [
-    "C:\\Users\\José Hernández\\FlaskBDIDGS803\\.env\\Lib\\site-packages"
-  ]
+    "."
+  ],
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }

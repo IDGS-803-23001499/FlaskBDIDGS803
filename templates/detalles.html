@@ -1,7 +1,10 @@
 {% extends "layout.html" %}{% block container %}{%from "_macros.html" import camposNuevos %}
 
-<a href="index" class="font-medium text-fg-brand hover:underline">Volver</a>
-<div>
+<a href="{{ url_for('index') }}" style="margin-top: 15px;">
+    <img src="{{ url_for('static', filename='img/user.png') }}" alt="Volver" width="100" 
+    style="padding-right: 10px;">
+</a>
+<div style="margin-top: 15px;">
     <h5>
         Nombre: {{nombre}}
     </h5>
