@@ -10,7 +10,10 @@ class UserForm(Form):
         validators.DataRequired(message='El campo es requerido'),
         validators.length(min=4,max=10,message='Ingrese nombre valido' )
     ])
-    apaterno=StringField('aPaterno',[
+    apellidos=StringField('Apellidos',[
+        validators.DataRequired(message='El campo es requerido'),
+    ])
+    telefono=StringField('Telefono',[
         validators.DataRequired(message='El campo es requerido'),
     ])
     email=EmailField('Correo',[
