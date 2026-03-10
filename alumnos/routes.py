@@ -1,17 +1,17 @@
 from flask import render_template, request, redirect, url_for
-from models import Alumnos, db
 import forms
+from models import db
+from models import Alumnos
 from . import alumnos
 
 
-@alumnos.route("/")
-@alumnos.route("/index")
-def index():
+@alumnos.route("/", methods=['GET'])
+def alumnos_lista():
     create_form = forms.UserForm(request.form)
-    alumno = Alumnos.query.all()
-    return render_template("alumnos/index.html",
+    alumnos = Alumnos.query.all()
+    return render_template("alumnos/indexAlum.html",
                            form=create_form,
-                           alumno=alumno)
+                           alumnos=alumnos)
 
 
 @alumnos.route("/nuevo", methods=['GET', 'POST'])
@@ -27,55 +27,72 @@ def nuevo():
         )
         db.session.add(alum)
         db.session.commit()
-        return redirect(url_for('alumnos.index'))
+        return redirect(url_for('alumnos.alumnos_lista'))
 
-    return render_template("alumnos/Alumnos.html", form=create_form)
-
-
-@alumnos.route("/detalles/<int:id>")
-def detalles(id):
-    alum = Alumnos.query.get_or_404(id)
-    return render_template("alumnos/detalles.html", alumno=alum)
+    return render_template("alumnos/nuevo.html", form=create_form)
 
 
-@alumnos.route("/modificar/<int:id>", methods=['GET', 'POST'])
-def modificar(id):
+@alumnos.route("/modificar", methods=['GET', 'POST'])
+def modificar():
     create_form = forms.UserForm(request.form)
-    alum = Alumnos.query.get_or_404(id)
 
     if request.method == 'GET':
-        create_form.id.data = alum.id
+        id = request.args.get('id')
+        alum = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+
+        create_form.id.data = id
         create_form.nombre.data = alum.nombre
         create_form.apellidos.data = alum.apellidos
         create_form.telefono.data = alum.telefono
         create_form.email.data = alum.email
 
     if request.method == 'POST':
+        id = create_form.id.data
+        alum = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+
         alum.nombre = create_form.nombre.data
         alum.apellidos = create_form.apellidos.data
         alum.telefono = create_form.telefono.data
         alum.email = create_form.email.data
+
+        db.session.add(alum)
         db.session.commit()
-        return redirect(url_for('alumnos.index'))
+        return redirect(url_for('alumnos.alumnos_lista'))
 
     return render_template("alumnos/modificar.html", form=create_form)
 
 
-@alumnos.route("/eliminar/<int:id>", methods=['GET', 'POST'])
-def eliminar(id):
+@alumnos.route("/eliminar", methods=['GET', 'POST'])
+def eliminar():
     create_form = forms.UserForm(request.form)
-    alum = Alumnos.query.get_or_404(id)
 
     if request.method == 'GET':
-        create_form.id.data = alum.id
+        id = request.args.get('id')
+        alum = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+
+        create_form.id.data = id
         create_form.nombre.data = alum.nombre
         create_form.apellidos.data = alum.apellidos
         create_form.telefono.data = alum.telefono
         create_form.email.data = alum.email
 
     if request.method == 'POST':
+        id = create_form.id.data
+        alum = Alumnos.query.get(id)
         db.session.delete(alum)
         db.session.commit()
-        return redirect(url_for('alumnos.index'))
+        return redirect(url_for('alumnos.alumnos_lista'))
 
     return render_template("alumnos/eliminar.html", form=create_form)
+
+
+@alumnos.route("/detalles", methods=['GET'])
+def detalles():
+    id = request.args.get('id')
+    alum = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+
+    return render_template("alumnos/detalles.html",
+                           nombre=alum.nombre,
+                           apellidos=alum.apellidos,
+                           telefono=alum.telefono,
+                           email=alum.email)

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}{% block container %}{%from "_macros.html" import camposNuevos %}
 
-<a href="{{ url_for('index') }}" style="margin-top: 15px;">
+<a href="{{ url_for('alumnos.alumnos_lista') }}" style="margin-top: 15px;">
     <img src="{{ url_for('static', filename='img/user.png') }}" alt="Volver" width="100" 
     style="padding-right: 10px;">
 </a>
@@ -9,7 +9,7 @@
         Nombre: {{nombre}}
     </h5>
     <h3>
-        Apellidos: {{apaterno}}
+        Apellidos: {{apellidos}}
     </h3>
     <h3>
         Correo: {{email}}

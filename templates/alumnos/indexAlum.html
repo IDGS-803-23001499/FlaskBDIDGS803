@@ -4,7 +4,7 @@
 
 <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default" 
     style="margin-top: 15px;">
-<a href="Alumnos" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong 
+<a href="nuevo" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong 
                         focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base 
                         text-sm px-4 py-2.5 focus:outline-none">Nuevo</a>
   <table class="w-full text-sm text-left rtl:text-right text-body">
@@ -34,7 +34,7 @@
             </tr>
         </thead>
         <tbody>
-            {%for alum in alumno%}
+            {% for alum in alumnos %}
             <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
                     {{ alum.nombre }}

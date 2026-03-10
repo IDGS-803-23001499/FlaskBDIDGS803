@@ -1,0 +1,66 @@
+{% extends "layout.html" %} 
+
+{% block container %}
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default" 
+    style="margin-top: 15px;">
+<a href="nuevo" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong 
+                        focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base 
+                        text-sm px-4 py-2.5 focus:outline-none">Nuevo</a>
+  <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="bg-neutral-secondary-soft border-b border-default">
+            <tr>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    NOMBRE
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    APELLIDOS
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    ESPECIALIDAD
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    CORREO
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    EDITAR
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    DETALLES
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    ELIMINAR
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maes in maestros %}
+            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                    {{ maes.nombre }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ maes.apellidos }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ maes.especialidad }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ maes.email }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="modificar?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline" style="color: orangered;">Editar</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="detalles?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline" style="color: purple;">Detalles</a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="eliminar?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline" style="color: red;">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{%endblock%}
