@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form method="POST" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="mb-5">
+        <label>Alumno</label>
+        <select name="alumno" class="block w-full px-3 py-2 text-sm text-gray-900 bg-gray-50 
+        border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+            {% for alumno in alumnos %}
+            <option value="{{ alumno.id }}">
+                {{ alumno.nombre }} {{ alumno.apellidos }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-5">
+        <label>Curso</label>
+        <select name="curso" class="block w-full px-3 py-2 text-sm text-gray-900 bg-gray-50 
+        border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+            {% for curso in cursos %}
+            <option value="{{ curso.id }}">
+                {{ curso.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="flex justify-between mt-6">
+        <input type="submit" value="Inscribir" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium 
+        rounded-lg text-sm px-5 py-2.5">
+        <a href="{{ url_for('cursos.listado_cursos') }}" class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium 
+        rounded-lg text-sm px-5 py-2.5">
+            Cancelar
+        </a>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<div class="grid md:grid-cols-2 gap-6">
+    <div class="flex flex-col">
+        <h3 class="font-semibold mb-3">
+            Alumnos inscritos en un curso
+        </h3>
+        <select id="cursoSelect"
+            class="block w-full px-3 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg">
+            <option value="">Seleccione un curso</option>
+            {% for curso in cursos %}
+            <option value="{{curso.id}}">
+                {{curso.nombre}}
+            </option>
+            {% endfor %}
+        </select>
+        <button"
+            class="mt-4 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2">
+            Consultar
+        </button>
+    </div>
+    <div class="flex flex-col">
+        <h3 class="font-semibold mb-3">
+            Cursos de un alumno
+        </h3>
+        <select id="alumnoSelect"
+            class="block w-full px-3 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg">
+            <option value="">Seleccione un alumno</option>
+            {% for alumno in alumnos %}
+            <option value="{{alumno.id}}">
+                {{alumno.nombre}} {{alumno.apellidos}}
+            </option>
+            {% endfor %}
+        </select>
+        <button"
+            class="mt-4 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2">
+            Consultar
+        </button>
+    </div>
+</div>
+
+{% endblock %}

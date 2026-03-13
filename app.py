@@ -6,6 +6,7 @@ from models import db
 
 from maestros.routes import maestros
 from alumnos import alumnos
+from cursos import cursos
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
@@ -14,8 +15,13 @@ db.init_app(app)
 migrate = Migrate(app, db)
 csrf = CSRFProtect(app)
 
+@app.route("/")
+def inicio():
+    return render_template("bienvenida.html")
+
 app.register_blueprint(maestros, url_prefix="/maestros")
 app.register_blueprint(alumnos, url_prefix="/alumnos")
+app.register_blueprint(cursos, url_prefix="/cursos")
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404

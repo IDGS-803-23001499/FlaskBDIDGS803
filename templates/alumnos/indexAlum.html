@@ -1,13 +1,13 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block container %}
 
-<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default" 
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default"
     style="margin-top: 15px;">
-<a href="nuevo" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong 
+    <a href="nuevo" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong 
                         focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base 
                         text-sm px-4 py-2.5 focus:outline-none">Nuevo</a>
-  <table class="w-full text-sm text-left rtl:text-right text-body">
+    <table class="w-full text-sm text-left rtl:text-right text-body">
         <thead class="bg-neutral-secondary-soft border-b border-default">
             <tr>
                 <th scope="col" class="px-6 py-3 font-medium">
@@ -27,6 +27,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
                     DETALLES
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    CURSOS
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
                     ELIMINAR
@@ -49,13 +52,22 @@
                     {{ alum.email }}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="modificar?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline" style="color: orangered;">Editar</a>
+                    <a href="modificar?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline"
+                        style="color: orangered;">Editar</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="detalles?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline" style="color: purple;">Detalles</a>
+                    <a href="detalles?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline"
+                        style="color: purple;">Detalles</a>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="eliminar?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline" style="color: red;">Eliminar</a>
+                    <a href="{{ url_for('cursos.cursos_alumno', alumno_id=alum.id) }}"
+                        class="font-medium text-fg-brand hover:underline" style="color: blue;">
+                        Cursos
+                    </a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="eliminar?id={{ alum.id }}" class="font-medium text-fg-brand hover:underline"
+                        style="color: red;">Eliminar</a>
                 </td>
             </tr>
             {% endfor %}

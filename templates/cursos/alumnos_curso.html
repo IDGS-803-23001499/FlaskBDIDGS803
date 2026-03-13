@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default"
+    style="margin-top: 15px;">
+    <h2 class="px-6 py-3 font-medium">
+        Alumnos inscritos en: {{ curso.nombre }}
+    </h2>
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="bg-neutral-secondary-soft border-b border-default">
+            <tr>
+                <th class="px-6 py-3 font-medium">
+                    NOMBRE
+                </th>
+                <th class="px-6 py-3 font-medium">
+                    APELLIDOS
+                </th>
+                <th class="px-6 py-3 font-medium">
+                    EMAIL
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                <td class="px-6 py-4">
+                    {{ alumno.nombre }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ alumno.apellidos }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ alumno.email }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('cursos.listado_cursos') }}" class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium 
+    rounded-lg text-sm px-5 py-2.5 m-5 inline-block">Volver</a>
+</div>
+{% endblock %}
